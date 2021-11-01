@@ -1,0 +1,84 @@
+*{
+    margin-left:0;
+    text-indent: 50px;
+    padding: 0;
+    font-family: 'Voltaire';
+    background-color:whitesmoke;
+}
+
+@font-face {
+    font-family: 'Voltaire';
+    src: url('Voltaire-Regular.ttf');
+}
+.header h1 {
+    font-style:italic;
+    font-family:'Voltaire';
+    font-size: 80px;
+    color: #77BB3F;
+    border-bottom: 1px solid gray;
+    border-width: 5px;
+}
+
+.header h2 {
+    font-style: normal;
+    font-size: 60px;
+    font-family: 'Voltaire';
+    color: #77BB3F;
+}
+
+.filter h4 {
+    font-size: 30px;
+    font-family: 'Voltaire';
+    color: #77BB3F;
+}
+
+/*.filter input {
+    background-color: grey;
+    padding: 10px;
+    font-family:'Voltaire';
+    font-size:20px;
+    border:none;
+    outline: black;
+    border-radius:5px ;
+    text-align: left;
+    margin:20px auto;
+}*/
+
+.filter label{
+    font-family:'Voltaire';
+    font-size:20px;
+}
+
+.table h3 {
+    font-size: 40px;
+    text-indent: 80px;
+    font-style: italic;
+    font-family: 'Voltaire';
+    color: #77BB3F;
+}
+
+.table th {
+    text-justify: auto;
+    font-size: 30px;
+    font-family: 'Voltaire';
+    font-variant: normal;
+    background-color: #F7F7F6;
+    text-align:center;
+    color: #77BB3F;
+}
+
+table td {
+    font-size: 20px;
+    font-family: 'Voltaire';
+    text-align:center;
+}
+
+.table table,th,td,tr {
+    border:1px solid #000;
+    width:1200px;
+    border-spacing:center;
+    border-collapse:collapse;
+    padding:10px;
+    margin-left: 160px;
+    max-width: 100%;
+}

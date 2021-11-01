@@ -31,3 +31,10 @@ The previous command will:
 
 The application should now be running on http://127.0.0.1:5000/ . 
 
+
+### Testing
+
+Execute the following command to run unit tests
+```shell
+sh test.sh
+```

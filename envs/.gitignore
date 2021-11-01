@@ -1,3 +1,4 @@
 *
 !.gitignore
 !local.env
+!test.env

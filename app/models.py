@@ -23,5 +23,5 @@ class UserText(db.Document):
 
     @property
     def formatted_date(self):
-        dt = datetime.fromisoformat(self.date)
+        dt = datetime.fromisoformat(self.date) if not isinstance(self.date, datetime) else self.date
         return dt.strftime("%m/%d/%Y, %H:%M:%S")

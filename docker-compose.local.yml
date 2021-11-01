@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  web-server:
+    build: .
+    command: sh -c "python -m flask run --host=0.0.0.0"
+    env_file:
+      - ./envs/local.env
+    ports:
+      - "5000:5000"
+
+  mongodb:
+    image: "mongo"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass123
+      MONGO_INITDB_DATABASE: snicely
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d/

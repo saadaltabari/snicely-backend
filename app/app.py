@@ -1,4 +1,10 @@
-from flask import Flask, request, redirect, jsonify
+from flask import (
+    Flask,
+    request,
+    render_template,
+    redirect,
+    jsonify
+)
 
 # from decorators import authorize_admin_users_only
 from models import db, UserText
@@ -24,7 +30,9 @@ def user_flagged_text_history():
         403:
             Permission to view flagged user text list denied.
     """
-    return jsonify(UserText.objects.all())
+    user_text_history = UserText.objects.all()
+    return render_template('Language_History_Page_Snicely.html',
+                           user_text_history=user_text_history)
 
 
 if __name__ == '__main__':

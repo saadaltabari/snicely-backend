@@ -1,3 +1,4 @@
+docker-compose -f docker-compose.local.yml down
 
 docker-compose -f docker-compose.test.yml up -d --build
 

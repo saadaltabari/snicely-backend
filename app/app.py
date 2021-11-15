@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import (
     Flask,
     request,
@@ -45,23 +47,20 @@ def validate_user_text():
     user_text = user_data.get('text')
     handler = PerspectiveAPIToxicityHandler(user_text=user_text)
     is_toxic, toxic_text = handler.evaluate()
+    request_time = datetime.now()
+
+    for text in toxic_text:
+        snicely_user_text = UserText()
+        snicely_user_text.user_text = text['text']
+        snicely_user_text.user_id = "123"# default user_id for now
+        snicely_user_text.toxicity_score = text['toxicity_score']
+        snicely_user_text.date = request_time
+        snicely_user_text.save()
+
     return {
         'is_toxic': is_toxic,
         'toxic_text': toxic_text
     }
-
-
-@app.route('/validate', methods=['POST'])
-def store_user_text():
-    """
-    store user text to database
-    """
-    user_data = request.form
-    sincely_user_text = UserText()
-    sincely_user_text.user_text = user_data.get('name')
-    sincely_user_text.save()
-    res = perspective_func(user_data)
-    return {'toxic text': res['toxic_text']}
 
 
 if __name__ == '__main__':

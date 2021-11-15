@@ -3,7 +3,7 @@ from googleapiclient import discovery
 from settings import SETTINGS
 
 
-__PERSPECTIVE_SERVICE = discovery.build(
+_PERSPECTIVE_SERVICE = discovery.build(
     'commentanalyzer',
     'v1alpha1',
     developerKey=SETTINGS['PERSPECTIVE_API_KEY'],
@@ -83,13 +83,12 @@ class PerspectiveAPIToxicityHandler(ToxicityHandler):
 
     def _process_toxic_text(self, service_response):
         toxic_text = []
-        for highlighted_text in response.get('attributeScores', {}).get('TOXICITY', {}).get('spanScores', []):
+        for highlighted_text in service_response.get('attributeScores', {}).get('TOXICITY', {}).get('spanScores', []):
             begin = highlighted_text['begin']
             end = highlighted_text['end']
             toxic_text.append({
-                'text': text[begin:end],
-                'begin': begin,
-                'end': end
+                'text': self.user_text[begin:end],
+                'toxicity_score': highlighted_text['score']['value']
             })
         return toxic_text
 
@@ -113,4 +112,4 @@ class PerspectiveAPIToxicityHandler(ToxicityHandler):
             ).execute()
 
     def _get_service(self):
-        return __PERSPECTIVE_SERVICE
+        return _PERSPECTIVE_SERVICE

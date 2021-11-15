@@ -10,6 +10,6 @@ SETTINGS = {
         "password": os.environ.get("MONGO_DB_PASSWORD"),
         "authentication_source": os.environ.get("MONGO_DB_AUTH_SOURCE")
     },
-    "PERSPECTIVE_API": os.environ.get("PERSPECTIVE_API_KEY"),
+    "PERSPECTIVE_API_KEY": os.environ.get("PERSPECTIVE_API_KEY"),
     "TOXICITY_THRESHOLD": 0.7
 }

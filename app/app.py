@@ -7,6 +7,7 @@ from flask import (
 )
 
 # from decorators import authorize_admin_users_only
+from handlers import PerspectiveAPIToxicityHandler
 from models import db, UserText
 from settings import SETTINGS
 
@@ -34,14 +35,20 @@ def user_flagged_text_history():
     return render_template('Language_History_Page_Snicely.html',
                            user_text_history=user_text_history)
 
+
 @app.route('/validate', methods=['POST'])
 def validate_user_text():
     """
     text validation http
     """
-    user_data = request.data
-    res = perspective_func(user_data)
-    return {'toxicity': res['toxicity']}
+    user_data = request.form
+    user_text = user_data.get('text')
+    handler = PerspectiveAPIToxicityHandler(user_text=user_text)
+    is_toxic, toxic_text = handler.evaluate()
+    return {
+        'is_toxic': is_toxic,
+        'toxic_text': toxic_text
+    }
 
 
 @app.route('/validate', methods=['POST'])
@@ -55,7 +62,6 @@ def store_user_text():
     sincely_user_text.save()
     res = perspective_func(user_data)
     return {'toxic text': res['toxic_text']}
-
 
 
 if __name__ == '__main__':

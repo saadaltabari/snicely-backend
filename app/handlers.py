@@ -87,7 +87,8 @@ class PerspectiveAPIToxicityHandler(ToxicityHandler):
             begin = highlighted_text['begin']
             end = highlighted_text['end']
             toxic_text.append({
-                'text': self.user_text[begin:end]
+                'text': self.user_text[begin:end],
+                'toxicity_score': highlighted_text['score']['value']
             })
         return toxic_text
 
